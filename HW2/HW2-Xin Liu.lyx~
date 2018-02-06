@@ -1,0 +1,1377 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\author{}
+\date{}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{listings}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+CS M146,Winter 2018
+\begin_inset Newline newline
+\end_inset
+
+Problem Set 2
+\end_layout
+
+\begin_layout Author
+Xin Liu, 505037053
+\end_layout
+
+\begin_layout Section
+Perceptron
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(a) AND
+\begin_inset Newline newline
+\end_inset
+
+One valid perceptron:
+\begin_inset Formula $w=$
+\end_inset
+
+
+\begin_inset Formula $\left[\begin{array}{c}
+1\\
+1\\
+-1.5
+\end{array}\right]$
+\end_inset
+
+, and the corresponding hyperplane is 
+\begin_inset Formula $x_{1}+x_{2}-1.5=0$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Another valid perceptron: 
+\begin_inset Formula $w=$
+\end_inset
+
+
+\begin_inset Formula $\left[\begin{array}{c}
+1\\
+2\\
+-2.5
+\end{array}\right]$
+\end_inset
+
+, and the corresponding hyperplane is 
+\begin_inset Formula $x_{1}+2x_{2}-2.5=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(b) XOR
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A valid perceptron does not exist, for XOR is not linearly separable.
+\end_layout
+
+\begin_layout Section
+Logistic Regression
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{\partial J}{\partial\theta_{j}}=-\frac{1}{\partial\theta_{j}}\stackrel[n=1]{N}{\sum}[y_{n}logh_{\theta}(x_{n})+(1-y_{n})log(1-h_{\theta}(x_{n}))]$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $=-\stackrel[n=1]{N}{\sum}\frac{1}{\partial\theta_{j}}[y_{n}logh_{\theta}(x_{n})+(1-y_{n})log(1-h_{\theta}(x_{n}))]$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $=-\stackrel[n=1]{N}{\sum}[y_{n}\cdot\frac{1}{h_{\theta}(x_{n})}h_{\theta}(x_{n})\cdot(1-h_{\theta}(x_{n}))x_{n}+(1-y_{n})\frac{1}{1-h_{\theta}(x_{n})}\cdot(-1)\cdot h_{\theta}(x_{n})\cdot(1-h_{\theta}(x_{n}))x_{n}]$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $=-\stackrel[n=1]{N}{\sum}[y_{n}\cdot(1-h_{\theta}(x_{n}))x_{n}+(y_{n}-1)\cdot h_{\theta}(x_{n})x_{n}]$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $=-\stackrel[n=1]{N}{\sum}[(y_{n}-h_{\theta}(x_{n}))x_{n}]$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $=\stackrel[n=1]{N}{\sum}[(h_{\theta}(x_{n})-y_{n})x_{n}]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Locally Weighted Linear Regression
+\end_layout
+
+\begin_layout Standard
+(a)
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Formula $\frac{\partial J}{\partial\theta_{0}}=2\stackrel[n=1]{N}{\sum}w_{n}(\theta_{0}+\theta_{1}x_{n\text{,}1}-y_{n})$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\frac{\partial J}{\partial\theta_{1}}=2\stackrel[n=1]{N}{\sum}w_{n}(\theta_{0}+\theta_{1}x_{n,1}-y_{n})x_{n,1}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(b) 
+\begin_inset Newline newline
+\end_inset
+
+After setting each partial derivative to zero, we can obtain the following
+ two equations.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta_{0}\stackrel[n=1]{N}{\sum}w_{n}+\theta_{1}\stackrel[n=1]{N}{\sum}w_{n}x_{n,1}-\stackrel[n=1]{N}{\sum}w_{n}y_{n}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta_{0}\stackrel[n=1]{N}{\sum}w_{n}x_{n,1}+\theta_{1}\stackrel[n=1]{N}{\sum}w_{n}x_{n,1}^{2}-\stackrel[n=1]{N}{\sum}w_{n}x_{n,1}y_{n}=0$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For convenience, use some variables to denote some expressions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a=\stackrel[n=1]{N}{\sum}w_{n},b=\stackrel[n=1]{N}{\sum}w_{n}x_{n,1},c=\stackrel[n=1]{N}{\sum}w_{n}x_{n,1},d=\stackrel[n=1]{N}{\sum}w_{n}x_{n,1}^{2},e=\stackrel[n=1]{N}{\sum}w_{n}y_{n},f=\stackrel[n=1]{N}{\sum}w_{n}x_{n,1}y_{n}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Subsequently, we can acquire the values of 
+\begin_inset Formula $\theta_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta_{1}$
+\end_inset
+
+,
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta_{0}=\dfrac{de-bf}{ad-bc}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta_{1}=\dfrac{af-ce}{ad-bc}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If we are allowed to represent the data in matrix form , we can obtain the
+ analytical answer as well, which is more concise.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $X=\left[\begin{array}{cc}
+1 & x_{1,1}\\
+\cdots & \cdots\\
+1 & x_{n,1}
+\end{array}\right],y=\left[\begin{array}{c}
+y_{1}\\
+\vdots\\
+y_{n}
+\end{array}\right],W=\left[\begin{array}{ccc}
+w_{1} & 0 & 0\\
+0 & \cdots & 0\\
+0 & 0 & w_{n}
+\end{array}\right]$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Then,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\left[\begin{array}{c}
+\theta_{0}\\
+\theta_{1}
+\end{array}\right]=(X^{T}WX)^{-1}X^{T}Wy$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Understanding Linear Separability
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(a) Considering the dataset is linearly separable, 
+\begin_inset Formula $\exists$
+\end_inset
+
+ hyperplane 
+\begin_inset Formula $\overrightarrow{v}^{T}\vec{x}+\gamma$
+\end_inset
+
+ such that,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\underset{(\overrightarrow{x},y)\epsilon D,y=-1}{max}(\overrightarrow{v}^{T}\vec{x}+\gamma)<0\leqslant\underset{(\overrightarrow{x},y)\epsilon D,y=1}{min}(\overrightarrow{v}^{T}\vec{x}+\gamma)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Use 
+\begin_inset Formula $\overrightarrow{x_{i}}$
+\end_inset
+
+ to denote the positive data point which is closest to the hyperplane 
+\begin_inset Formula $\overrightarrow{v}^{T}\vec{x}+\gamma$
+\end_inset
+
+ ,
+\begin_inset Newline newline
+\end_inset
+
+and use 
+\begin_inset Formula $\overrightarrow{x_{j}}$
+\end_inset
+
+ to denote the negative data point which is closest to the hyperplane 
+\begin_inset Formula $\overrightarrow{v}^{T}\vec{x}+\gamma$
+\end_inset
+
+ .
+\begin_inset Newline newline
+\end_inset
+
+So,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $d_{+}=\underset{(\overrightarrow{x},y)\epsilon D,y=1}{min}(\overrightarrow{v}^{T}\vec{x}+\gamma)=\overrightarrow{v}^{T}\vec{x_{i}}+\gamma$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $d_{-}=\underset{(\overrightarrow{x},y)\epsilon D,y=-1}{max}(\overrightarrow{v}^{T}\vec{x}+\gamma)=\overrightarrow{v}^{T}\vec{x_{j}}+\gamma$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Obviously, 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $d_{-}$
+\end_inset
+
+
+\begin_inset Formula $<0$
+\end_inset
+
+
+\begin_inset Formula $\leqslant$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $d_{+}$
+\end_inset
+
+, and 
+\begin_inset Formula $\exists\zeta\geqslant0$
+\end_inset
+
+ such that 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $d_{-}-\zeta<0\leqslant d_{+}-\zeta$
+\end_inset
+
+.
+ Therefore,
+\begin_inset Formula $\overrightarrow{v}^{T}\vec{x}+\gamma$
+\end_inset
+
+ -
+\begin_inset Formula $\zeta$
+\end_inset
+
+
+\begin_inset Formula $=0$
+\end_inset
+
+ can also linearly separate 
+\begin_inset Formula $D$
+\end_inset
+
+\SpecialChar endofsentence
+
+\begin_inset Newline newline
+\end_inset
+
+Now, our goal is to find such a 
+\begin_inset Formula $\zeta$
+\end_inset
+
+ that 
+\begin_inset Formula $\overrightarrow{x_{i}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\overrightarrow{x_{j}}$
+\end_inset
+
+ have the same distance from the hyperplane 
+\begin_inset Formula $\overrightarrow{v}^{T}\vec{x}+\gamma$
+\end_inset
+
+ -
+\begin_inset Formula $\zeta$
+\end_inset
+
+
+\begin_inset Formula $=0$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Since their have equal distances,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\frac{|\overrightarrow{v}^{T}\vec{x_{i}}+\gamma-\zeta|}{\left\Vert \overrightarrow{v}\right\Vert }=\frac{|\overrightarrow{v}^{T}\vec{x_{j}}+\gamma-\zeta|}{\left\Vert \overrightarrow{v}\right\Vert }$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\overrightarrow{v}^{T}\vec{x_{\text{i}}}+\gamma-\zeta=-(\overrightarrow{v}^{T}\vec{x}_{j}+\gamma-\zeta)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $d_{+}-\zeta=-d_{-}+\zeta$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Finally, we obtain that 
+\begin_inset Formula $\zeta=(d_{+}+d_{-})/2$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Now, our new hyperplane is 
+\begin_inset Formula $\overrightarrow{v}^{T}\vec{x}+\gamma$
+\end_inset
+
+ -
+\begin_inset Formula $\zeta$
+\end_inset
+
+
+\begin_inset Formula $=0$
+\end_inset
+
+ ( 
+\begin_inset Formula $\zeta=(d_{+}+d_{-})/2$
+\end_inset
+
+).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\underset{(\overrightarrow{x},y)\epsilon D,y=1}{min}(\overrightarrow{v}^{T}\vec{x}+\gamma-\zeta)=\underset{(\overrightarrow{x},y)\epsilon D,y=1}{min}(\overrightarrow{v}^{T}\vec{x}+\gamma)-\zeta=d_{+}-\zeta=(d_{+}-d_{-})/2.$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\underset{(\overrightarrow{x},y)\epsilon D,y=-1}{max}(\overrightarrow{v}^{T}\vec{x}+\gamma-\zeta)=\underset{(\overrightarrow{x},y)\epsilon D,y=-1}{max}(\overrightarrow{v}^{T}\vec{x}+\gamma)-\zeta=d_{-}-\zeta=(d_{-}-d_{+})/2$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Hence,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $y(\overrightarrow{v}^{T}\vec{x}+\gamma-\zeta)\geqslant(d_{+}-d_{-})/2$
+\end_inset
+
+, 
+\begin_inset Formula $\forall(\overrightarrow{x},y)\epsilon D$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Let 
+\begin_inset Formula $\overrightarrow{v}^{T}=\zeta\overrightarrow{w}^{T},\gamma-\zeta=\zeta\theta,$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $y(\zeta\overrightarrow{w}^{T}\overrightarrow{x}+\zeta\theta)\geqslant\frac{d_{+}-d_{-}}{2}>\frac{d_{+}+d_{-}}{2}=\zeta(\zeta\geqslant0)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $y(\overrightarrow{w}^{T}\overrightarrow{x}+\theta)\geqslant1,\forall(\overrightarrow{x},y)\epsilon D$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In this case, 
+\begin_inset Formula $\delta=0$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Thus, an optimal solution to the linear program (2) is 
+\begin_inset Formula $\delta=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(b) If there is an optimal solution with 
+\begin_inset Formula $\delta=0$
+\end_inset
+
+, it means that 
+\begin_inset Formula $\exists$
+\end_inset
+
+ hyperplane 
+\begin_inset Formula $\overrightarrow{w}^{T}\vec{x}+\theta,$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $y(\overrightarrow{w}^{T}\vec{x}+\theta)>=1,\forall(\vec{x},y)\epsilon D$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Obviously, 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+for 
+\begin_inset Formula $\forall(\vec{x},y)\epsilon D$
+\end_inset
+
+ and 
+\begin_inset Formula $y=1$
+\end_inset
+
+, 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $(\overrightarrow{w}^{T}\vec{x}+\theta)\geqslant1>0$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+for 
+\begin_inset Formula $\forall(\vec{x},y)\epsilon D$
+\end_inset
+
+ and 
+\begin_inset Formula $y=-1$
+\end_inset
+
+,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $(\overrightarrow{w}^{T}\vec{x}+\theta)\leqslant-1<0$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+According to the description of (1), we can determine that 
+\begin_inset Formula $D$
+\end_inset
+
+ is linear separable.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(c) The situation varies with the value of 
+\begin_inset Formula $\delta$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+If 
+\begin_inset Formula $0<\delta<1$
+\end_inset
+
+, the situation is similar to the question (b), so the dataset 
+\begin_inset Formula $D$
+\end_inset
+
+ is still linearly separable.
+\begin_inset Newline newline
+\end_inset
+
+If 
+\begin_inset Formula $\delta\geqslant1,$
+\end_inset
+
+ we can not guarantee the dataset 
+\begin_inset Formula $D$
+\end_inset
+
+ is linearly separable.
+\begin_inset Newline newline
+\end_inset
+
+However, if the 
+\begin_inset Formula $\delta_{min}$
+\end_inset
+
+
+\begin_inset Formula $\geqslant1$
+\end_inset
+
+, we are sure that the dataset 
+\begin_inset Formula $D$
+\end_inset
+
+ is 
+\series bold
+not
+\series default
+ linearly separable.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(d) The optimal solution is this alternative LP formulation is 
+\begin_inset Formula $\delta=0$
+\end_inset
+
+, 
+\begin_inset Formula $\overrightarrow{w}=\vec{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\theta=0$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As is shown above, the downside of this formulation is that regardless of
+ the actual dataset, the optimal solution can always be a trivial and meaningles
+s solution (
+\begin_inset Formula $\delta=0$
+\end_inset
+
+, 
+\begin_inset Formula $\overrightarrow{w}=\vec{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\theta=0$
+\end_inset
+
+), which is undoubtedly not appropriate to be a reasonable hyperplane.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(e) After applying two data points into the constraints of (2), we can get
+ the following two inequalities.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $w_{1}+w_{2}+w_{3}+\theta\geqslant1-\delta$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $-(-w_{1}-w_{2}-w_{3}+\theta)\geqslant1-\delta$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Since the dateset only includes two points, we can determine that dataset
+ 
+\begin_inset Formula $D$
+\end_inset
+
+ is linearly separable, based on question(a).
+\begin_inset Newline newline
+\end_inset
+
+Thus, 
+\begin_inset Formula $\delta=0$
+\end_inset
+
+, and
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $w_{1}+w_{2}+w_{3}+\theta\geqslant1$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $-(-w_{1}-w_{2}-w_{3}+\theta)\geqslant1$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+After simple transformations, we can obtain that 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $w_{1}+w_{2}+w_{3}\geqslant1-\theta$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $w_{1}+w_{2}+w_{3}\geqslant1+\theta$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+To select the intersection of these two constraints, we can conslude the
+ following constraint is valid,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $w_{1}+w_{2}+w_{3}\geqslant1+|\theta|$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+To sum up, the possible optimal solutions are 
+\begin_inset Formula $w_{1}+w_{2}+w_{3}\geqslant1+|\theta|$
+\end_inset
+
+ plus 
+\begin_inset Formula $\delta=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Implementation: Polynomial Regression
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(a) 
+\end_layout
+
+\begin_layout Standard
+Train Data 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Graphics
+	filename aTraindata.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+Test Data
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename aTestdata.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+I observe that the data distributions of train set and test set are somewhat
+ different, and both are not purely linear.Therefore, I guess the simple
+ linear regression approach can not predict data well.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(d)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of Iterations
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Final Value of Loss Function
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coefficients
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\eta=0.01$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+764
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.912576
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[\begin{array}{cc}
+2.4464 & -2.8164\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\eta=0.001$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7020
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.912576
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[\begin{array}{cc}
+2.4464 & -2.8164\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\eta=0.0001$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.086397
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[\begin{array}{cc}
+2.2704 & -2.4606\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\eta=0.0407$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Can not converge
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Very very large
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[\begin{array}{cc}
+-9.4047\ast10^{18} & -4.6523\ast10^{18}\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Regarding the coefficients, 
+\begin_inset Formula $\eta=0.01$
+\end_inset
+
+ and 
+\begin_inset Formula $\eta=0.001$
+\end_inset
+
+ achieve the exactly same one because the GD has converged under both conditions.
+ The coefficient of 
+\begin_inset Formula $\eta=0.0001$
+\end_inset
+
+ is slightly different, for the algorithm has not converged to the minimum
+ yet.
+ Since 
+\begin_inset Formula $\eta=0.0407$
+\end_inset
+
+ can not enable GD to converge eventually, the coefficient is weird and
+ meaningless to discusss further.
+\begin_inset Newline newline
+\end_inset
+
+As is shown in the table above,the GD converges fastest when 
+\begin_inset Formula $\eta=0.01$
+\end_inset
+
+ and slowest when 
+\begin_inset Formula $\eta=0.0001$
+\end_inset
+
+.
+ What's more, the GD will not converge when 
+\begin_inset Formula $\eta=0.0407$
+\end_inset
+
+ because the learning rate is too large.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(e) The closed-form solution is 
+\begin_inset Formula $\left[\begin{array}{cc}
+2.4464 & -2.8164\end{array}\right]$
+\end_inset
+
+, which is same as the one obtained via Gradient Descent(converged).
+ In terms of the speed, the closed-form solution runs faster for this particular
+ problem.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(f) After settting learning rate 
+\begin_inset Formula $\eta$
+\end_inset
+
+ as a function of the number of iterations, it takes 1678 times of iterations
+ for GD algorithm to converge.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(h) RMSE represents the average error of all data points.
+ By contrast, 
+\begin_inset Formula $J$
+\end_inset
+
+(
+\begin_inset Formula $\theta$
+\end_inset
+
+) becomes bigger and bigger as the size of dataset increases.
+ Smaller 
+\begin_inset Formula $J$
+\end_inset
+
+(
+\begin_inset Formula $\theta$
+\end_inset
+
+) does not necessarily indicate high precision because the dataset's small
+ size may be the cause.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(i) 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Graphics
+	filename figure_1.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I think polynomial of degree 5 would best fit for this particular data,
+ for the test error is minimal when the degree equals to 5.
+\begin_inset Newline newline
+\end_inset
+
+The phenomenon of overfitting is significant when the degree is greater
+ than 8.
+ As is depicted in the plot, the test error increases a lot when the model
+ is very complex, although the training error is still diminishing.
+\begin_inset Newline newline
+\end_inset
+
+The phenomenon of underfitting is evident when the degree is relatively
+ small, for example, 0 and 1.
+ When underfitting occurs, both training error and test error are very large,
+ which has been demonstrated in the plot.
+\end_layout
+
+\end_body
+\end_document
