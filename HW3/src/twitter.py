@@ -155,7 +155,7 @@ def performance(y_true, y_pred, metric="accuracy"):
     elif(metric=="f1_score"):
         score = metrics.f1_score(y_true, y_label)
     elif(metric=="auroc"):
-        score = metrics.roc_auc_score(y_true,y_label)
+        score = metrics.roc_auc_score(y_true,y_pred)
 
     return score
     ### ========== TODO : END ========== ###
