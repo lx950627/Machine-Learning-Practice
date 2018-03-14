@@ -1,2 +1,3 @@
 # CS146
-course projects regarding ML python programming
+## Course projects regarding Machine Learning Python Programming
+## Main Python Package Used: Numpy,Sklearn
